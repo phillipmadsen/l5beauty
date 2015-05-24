@@ -1,30 +1,24 @@
 <?php namespace App\Http\Controllers\Admin;
-use App\Tag;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagCreateRequest;
+use App\Tag;
 
 use Illuminate\Http\Request;
 
 class TagController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$tags = Tag::all();
 
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function index()
+  {
+    $tags = Tag::all();
     return view('admin.tag.index')
             ->withTags($tags);
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+  }
 
   protected $fields = [
     'tag' => '',
@@ -36,7 +30,6 @@ class TagController extends Controller {
     'reverse_direction' => 0,
   ];
 
-// Replace the create() method with this
   /**
    * Show form for creating new tag
    */
@@ -50,7 +43,6 @@ class TagController extends Controller {
     return view('admin.tag.create', $data);
   }
 
-// Update the store() method to match what's below
   /**
    * Store the newly created tag in the database.
    *
@@ -86,7 +78,6 @@ class TagController extends Controller {
     return view('admin.tag.edit', $data);
   }
 
-// Replace the update() method with the following
   /**
    * Update the tag in storage
    *
