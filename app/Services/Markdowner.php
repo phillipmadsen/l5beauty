@@ -1,29 +1,29 @@
-<<?php
+<?php
 
-class MarkdownerTest extends TestCase
+namespace App\Services;
+
+use Michelf\MarkdownExtra;
+use Michelf\SmartyPants;
+
+class Markdowner
 {
 
-  protected $markdown;
-
-  public function setup()
+  public function toHTML($text)
   {
-    $this->markdown = new \App\Services\Markdowner();
+    $text = $this->preTransformText($text);
+    $text = MarkdownExtra::defaultTransform($text);
+    $text = SmartyPants::defaultTransform($text);
+    $text = $this->postTransformText($text);
+    return $text;
   }
 
-  /**
-   * @dataProvider conversionsProvider
-   */
-  public function testConversions($value, $expected)
+  protected function preTransformText($text)
   {
-    $this->assertEquals($expected, $this->markdown->toHTML($value));
+    return $text;
   }
 
-  public function conversionsProvider()
+  protected function postTransformText($text)
   {
-    return [
-      ["test", "<p>test</p>\n"],
-      ["# title", "<h1>title</h1>\n"],
-      ["Here's Johnny!", "<p>Here’s Johnny!</p>\n"],
-    ];
+    return $text;
   }
 }
