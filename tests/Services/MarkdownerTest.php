@@ -1,4 +1,4 @@
-<?php
+<<?php
 
 class MarkdownerTest extends TestCase
 {
@@ -10,11 +10,21 @@ class MarkdownerTest extends TestCase
     $this->markdown = new \App\Services\Markdowner();
   }
 
-  public function testSimpleParagraph()
+  /**
+   * @dataProvider conversionsProvider
+   */
+  public function testConversions($value, $expected)
   {
-    $this->assertEquals(
-      "<p>test</p>\n",
-      $this->markdown->toHTML('test')
-    );
+    $this->assertEquals($expected, $this->markdown->toHTML($value));
+  }
+
+  public function conversionsProvider()
+  {
+    return [
+      ["test", "<p>test</p>\n"],
+      ["# title", "<h1>title</h1>\n"],
+      ["Here's Johnny!", "<p>Here’s Johnny!</p>\n"],
+    ];
   }
 }
+

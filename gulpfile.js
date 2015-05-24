@@ -8,6 +8,8 @@ elixir(function(mix) {
     // asynchronously. This means a dependent task, such as less(),
     // may run before copy() finishes. If this happens then just
     // run gulp twice. Not an elegant solution, but it works.
+
+    // jquery, bootstrap, and font awesome
     .copy(
       'vendor/bower_components/jquery/dist/jquery.js',
       'resources/assets/js/jquery.js'
@@ -26,7 +28,10 @@ elixir(function(mix) {
     ).copy(
       'vendor/bower_components/fontawesome/fonts',
       'public/adm/fonts'
-    ).copy(
+    )
+
+    // datatables
+    .copy(
       'vendor/bower_components/datatables/media/js/jquery.dataTables.js',
       'resources/assets/js/dataTables.js'
     ).copy(
@@ -37,15 +42,35 @@ elixir(function(mix) {
       'resources/assets/js/dataTables.bootstrap.js'
     )
 
-    .scripts([
-        'js/jquery.js',
-        'js/bootstrap.js',
-        'js/dataTables.js',
-        'js/dataTables.bootstrap.js'
-      ],
-      'public/adm/js/admin.js',
-      'resources/assets'
+    // selectize and pickadate
+    .copy(
+      'vendor/bower_components/selectize/dist/css',
+      'public/adm/selectize/css'
+    ).copy(
+      'vendor/bower_components/selectize/dist/js/standalone/selectize.min.js',
+      'public/adm/selectize/selectize.min.js'
+    ).copy(
+      'vendor/bower_components/pickadate/lib/compressed/themes',
+      'public/adm/pickadate/themes'
+    ).copy(
+      'vendor/bower_components/pickadate/lib/compressed/picker.js',
+      'public/adm/pickadate/picker.js'
+    ).copy(
+      'vendor/bower_components/pickadate/lib/compressed/picker.date.js',
+      'public/adm/pickadate/picker.date.js'
+    ).copy(
+      'vendor/bower_components/pickadate/lib/compressed/picker.time.js',
+      'public/adm/pickadate/picker.time.js'
     )
+
+    .scripts([
+      'js/jquery.js',
+      'js/bootstrap.js',
+      'js/dataTables.js',
+      'js/dataTables.bootstrap.js'
+
+    ], 'public/adm/js/admin.js', 'resources\/assets')
+
 
     .less('admin.less', 'public/adm/css')
 
