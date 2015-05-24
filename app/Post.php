@@ -8,14 +8,10 @@ use Illuminate\Support\Str;
 class Post extends Model
 {
     protected $dates = ['published_at'];
-
-    // Add the following near the top of the class, after $dates
-    protected $fillable = [
+     protected $fillable = [
     'title', 'subtitle', 'content_raw', 'page_image', 'meta_description',
     'template', 'is_draft', 'published_at',
   ];
-
-
 
     /**
      * The many-to-many relationship between posts and tags.
@@ -91,16 +87,11 @@ class Post extends Model
       $this->tags()->detach();
     }
 
-
-      /**
-   * Return the date portion of published_at
-   */
   public function getPublishDateAttribute($value)
   {
     return $this->published_at->format('M-j-Y');
   }
-  
-// Add the following three methods
+
   /**
    * Return the time portion of published_at
    */
@@ -116,5 +107,4 @@ class Post extends Model
   {
     return $this->content_raw;
   }
-
 }
